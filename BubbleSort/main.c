@@ -69,7 +69,7 @@ void listaOrdenada(int *vetBubble, int tamVet)
 
 void listaOrdenadaDecrescente(int *vetBubble, int tamVet)
 {
-    int varTemp = tamVet-1;
+    int varTemp = tamVet - 1;
     for (int i = 0; i < tamVet; i++)
     {
         vetBubble[varTemp] = i;
@@ -81,10 +81,11 @@ void listaOrdenadaDecrescente(int *vetBubble, int tamVet)
 void bubbleSort(int *vetBubble, int tamVet, long *totalSwap, long *totalInter, clock_t *tempoInicio, long *totalIteracoes)
 {
     long varTemp, contSwap = 0, contInter = 0, contIteracoes = 0;
-    int bolBreak = 0;
+    int bolBreak;
     *tempoInicio = clock();
     for (int i = 0; i < tamVet; i++)
     {
+        bolBreak = 0;
         contIteracoes++;
         for (int j = 0; j < tamVet - 1; j++)
         {
@@ -94,8 +95,15 @@ void bubbleSort(int *vetBubble, int tamVet, long *totalSwap, long *totalInter, c
                 vetBubble[j] = vetBubble[j + 1];
                 vetBubble[j + 1] = varTemp;
                 contSwap++;
+                contInter++;
+                bolBreak = 1;
             }
             contInter++;
+        }
+
+        if (bolBreak == 0)
+        {
+            break;
         }
     }
     *tempoInicio = clock() - *tempoInicio;
@@ -112,11 +120,11 @@ int main()
     int vet[10];
     long totalSwap, totalComp, totalnter;
     int tamVet = 10;
-    listaOrdenadaDecrescente(vet, tamVet);
-    //listaOrdenada(vet, tamVet);
-    //listaParcialmenteOrdenada75(vet, tamVet);
-    // createRandomList(vet, tamVet);
-    // listaParcialmenteOrdenada50(vet, tamVet);
+    // listaOrdenadaDecrescente(vet, tamVet);
+    listaOrdenada(vet, tamVet);
+    // listaParcialmenteOrdenada75(vet, tamVet);
+    //  createRandomList(vet, tamVet);
+    //  listaParcialmenteOrdenada50(vet, tamVet);
     bubbleSort(vet, tamVet, &totalSwap, &totalComp, &tempoInicio, &totalnter);
     for (int i = 0; i < tamVet; i++)
     {
