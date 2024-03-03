@@ -56,25 +56,24 @@ void listaOrdenadaDecrescente(int *vetBubble, int tamVet) {
     }
 }
 
-// Função para ajustar o heap
-void heapify(int *vet, int n, int i, long long *totalSwap, long long *totalComp) {
+// FUNÇÃO PARA AJUSTAS O HEAP //
+void heapify(int *vet, int n, int i, long long *totalSwap, long long *totalComp, long long *totalIteracoes) {
     int maior = i; 
     int esq = 2 * i + 1; 
     int dir = 2 * i + 2; 
+    (*totalIteracoes)++; 
 
-    // Se o filho da esquerda é maior que a raiz
+
     if (esq < n && vet[esq] > vet[maior]) {
         maior = esq;
         (*totalComp)++;
     }
 
-    // Se o filho da direita é maior que o maior até agora
     if (dir < n && vet[dir] > vet[maior]) {
         maior = dir;
         (*totalComp)++;
     }
 
-    // Se o maior não é raiz
     if (maior != i) {
         int swap = vet[i];
         vet[i] = vet[maior];
@@ -82,28 +81,28 @@ void heapify(int *vet, int n, int i, long long *totalSwap, long long *totalComp)
 
         (*totalSwap)++;
 
-        // Recursivamente heapify a sub-árvore afetada
-        heapify(vet, n, maior, totalSwap, totalComp);
+
+        heapify(vet, n, maior, totalSwap, totalComp, totalIteracoes);
     }
 }
 
-// Função principal para realizar o heapSort
-void heapSort(int *vet, int n, long long *totalSwap, long long *totalComp) {
-    // Construir heap (rearranjar array)
-    for (int i = n / 2 - 1; i >= 0; i--)
-        heapify(vet, n, i, totalSwap, totalComp);
+// FUNÇÃO PARA REALIZAR O HEAP
+void heapSort(int *vet, int n, long long *totalSwap, long long *totalComp, long long *totalIteracoes) {
 
-    // Extrair um por um os elementos do heap
+    for (int i = n / 2 - 1; i >= 0; i--) {
+        heapify(vet, n, i, totalSwap, totalComp, totalIteracoes);
+    }
+
     for (int i = n - 1; i > 0; i--) {
-        // Mover a raiz atual para o fim
+
         int temp = vet[0];
         vet[0] = vet[i];
         vet[i] = temp;
 
         (*totalSwap)++;
 
-        // chamar max heapify na heap reduzida
-        heapify(vet, i, 0, totalSwap, totalComp);
+
+        heapify(vet, i, 0, totalSwap, totalComp, totalIteracoes);
     }
 }
 
@@ -111,19 +110,19 @@ void heapSort(int *vet, int n, long long *totalSwap, long long *totalComp) {
 int main() {
     srand(10);
     clock_t tempoInicio, tempoFim;
-    int vet[TAM_MAX50K];
-    long long totalSwap = 0, totalComp = 0;
-    int tamVet = TAM_MAX50K;
+    int vet[100];
+    long long totalSwap = 0, totalComp = 0, totalIteracoes = 0;
+    int tamVet = 100;
 
     // Escolha uma das opções de lista para testar o algoritmo de ordenação
     // listaOrdenadaDecrescente(vet, tamVet);
     // listaOrdenada(vet, tamVet);
     // listaParcialmenteOrdenada75(vet, tamVet);
     // createRandomList(vet, tamVet);
-    listaParcialmenteOrdenada50(vet, tamVet);
+    //listaParcialmenteOrdenada50(vet, tamVet);
 
     tempoInicio = clock();
-    heapSort(vet, tamVet, &totalSwap, &totalComp);
+    heapSort(vet, tamVet, &totalSwap, &totalComp, &totalIteracoes);
     tempoFim = clock();
 
     for (int i = 0; i < tamVet; i++) {
@@ -133,6 +132,7 @@ int main() {
     printf("Tempo em milisegundos: %f\n", (1000.0 * (tempoFim - tempoInicio)) / CLOCKS_PER_SEC);
     printf("Numero de trocas: %lld\n", totalSwap);
     printf("Numero de comparações: %lld\n", totalComp);
+    printf("Numero de iterações: %lld\n", totalIteracoes);
 
     return 0;
 }
