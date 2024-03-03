@@ -14,7 +14,7 @@
 
 void createRandomList(int *vetBubble, int tamVet)
 {
-    // srand(10);
+
     for (int i = 0; i < tamVet; i++)
     {
         vetBubble[i] = rand() % 100000;
@@ -31,7 +31,7 @@ void listaParcialmenteOrdenada50(int *vetBubble, int tamVet)
     {
         vetBubble[i] = i;
     }
-    // srand(10);
+
     for (int i = metadeVet; i < tamVet; i++)
     {
         vetBubble[i] = rand() % 100000;
@@ -78,9 +78,9 @@ void listaOrdenadaDecrescente(int *vetBubble, int tamVet)
 }
 
 // FUNÇÃO PRINCIPAL: BUBBLE SORT //
-void bubbleSort(int *vetBubble, int tamVet, long *totalSwap, long *totalInter, clock_t *tempoInicio, long *totalIteracoes)
+void bubbleSort(int *vetBubble, int tamVet, long long *totalSwap, long long *totalInter, clock_t *tempoInicio, long long *totalIteracoes)
 {
-    long varTemp, contSwap = 0, contInter = 0, contIteracoes = 0;
+    long long varTemp, contSwap = 0, contInter = 0, contIteracoes = 0;
     int bolBreak;
     *tempoInicio = clock();
     for (int i = 0; i < tamVet; i++)
@@ -117,14 +117,14 @@ int main()
 {
     srand(10);
     clock_t tempoInicio;
-    int vet[10];
-    long totalSwap, totalComp, totalnter;
-    int tamVet = 10;
-    // listaOrdenadaDecrescente(vet, tamVet);
-    listaOrdenada(vet, tamVet);
-    // listaParcialmenteOrdenada75(vet, tamVet);
+    int vet[TAM_MAX50K];
+    long long totalSwap, totalComp, totalnter;
+    int tamVet = TAM_MAX50K;
+    //  listaOrdenadaDecrescente(vet, tamVet);
+    //  listaOrdenada(vet, tamVet);
+    //  listaParcialmenteOrdenada75(vet, tamVet);
     //  createRandomList(vet, tamVet);
-    //  listaParcialmenteOrdenada50(vet, tamVet);
+    listaParcialmenteOrdenada50(vet, tamVet);
     bubbleSort(vet, tamVet, &totalSwap, &totalComp, &tempoInicio, &totalnter);
     for (int i = 0; i < tamVet; i++)
     {
@@ -132,9 +132,9 @@ int main()
     }
 
     printf("Tempo em milisegundos: %f\n", (1000.0 * tempoInicio) / CLOCKS_PER_SEC);
-    printf("Numero de trocas: %d\n", totalSwap);
-    printf("Numero de comparações: %d\n", totalComp);
-    printf("Numero de interacoes: %d\n", totalnter);
+    printf("Numero de trocas: %lld\n", totalSwap);
+    printf("Numero de comparações: %lld\n", totalComp);
+    printf("Numero de interacoes: %lld\n", totalnter);
 
     // bubbleSort(vet);
 
