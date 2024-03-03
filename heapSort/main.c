@@ -58,9 +58,9 @@ void listaOrdenadaDecrescente(int *vetBubble, int tamVet) {
 
 // Função para ajustar o heap
 void heapify(int *vet, int n, int i, long long *totalSwap, long long *totalComp) {
-    int maior = i; // Inicializa o maior como raiz
-    int esq = 2 * i + 1; // esquerda = 2*i + 1
-    int dir = 2 * i + 2; // direita = 2*i + 2
+    int maior = i; 
+    int esq = 2 * i + 1; 
+    int dir = 2 * i + 2; 
 
     // Se o filho da esquerda é maior que a raiz
     if (esq < n && vet[esq] > vet[maior]) {

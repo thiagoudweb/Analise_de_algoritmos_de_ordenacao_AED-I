@@ -110,9 +110,9 @@ void heapSort(int *vet, int n, long long *totalSwap, long long *totalComp, long 
 int main() {
     srand(10);
     clock_t tempoInicio, tempoFim;
-    int vet[100];
+    int vet[TAM_MAX10K];
     long long totalSwap = 0, totalComp = 0, totalIteracoes = 0;
-    int tamVet = 100;
+    int tamVet = TAM_MAX10K;
 
     // Escolha uma das opções de lista para testar o algoritmo de ordenação
     // listaOrdenadaDecrescente(vet, tamVet);
