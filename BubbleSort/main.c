@@ -117,7 +117,7 @@ int main() {
     // Escolha uma das opções de lista para testar o algoritmo de ordenação
     // listaOrdenadaDecrescente(vet, tamVet);
     // listaOrdenada(vet, tamVet);
-    listaParcialmenteOrdenada75(vet, tamVet);
+    //listaParcialmenteOrdenada75(vet, tamVet);
     // createRandomList(vet, tamVet);
     //listaParcialmenteOrdenada50(vet, tamVet);
 
