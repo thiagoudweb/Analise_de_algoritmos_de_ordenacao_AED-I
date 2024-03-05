@@ -65,7 +65,7 @@ void listaOrdenadaDecrescente(int *vetInsertion, int tamVet) {
   }
 }
 
-// FUNÇÃO PRINCIPAL: BUBBLE SORT //
+// FUNÇÃO PRINCIPAL: INSERTION SORT //
 void insertionSort(int *vetInsertion, int tamVet, long *totalSwap,
                    long *totalInter, clock_t *tempoInicio,
                    long *totalIteracoes) {
