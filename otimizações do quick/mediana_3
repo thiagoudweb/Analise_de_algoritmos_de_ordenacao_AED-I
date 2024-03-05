@@ -1,0 +1,73 @@
+#include <stdio.h>
+
+int particao(int A[], int menor, int maior) {
+  // Escolhendo pivô usando a mediana de três
+  int meio = (menor + maior) / 2;
+  int pivo = mediana(A[menor], A[meio], A[maior]);
+
+  // Particionando o vetor
+  while (menor <= maior) {
+    while (A[menor] < pivo) {
+      menor++;
+    }
+
+    while (A[maior] > pivo) {
+      maior--;
+    }
+
+    if (menor <= maior) {
+      int key;
+      key = A[menor];
+      A[menor] = A[maior];
+      A[maior] = key;
+      menor++;
+      maior--;
+    }
+  }
+
+  return menor;
+}
+
+int mediana(int a, int b, int c) {
+  if (a > b) {
+    if (a < c) {
+      return a;
+    } else if (b > c) {
+      return b;
+    } else {
+      return c;
+    }
+  } else {
+    if (a > c) {
+      return a;
+    } else if (b < c) {
+      return b;
+    } else {
+      return c;
+    }
+  }
+}
+
+void quickSort(int A[], int menor, int maior) {
+  if (menor < maior) {
+    // Particionando o vetor
+    int pivo = particao(A, menor, maior);
+
+    // Ordenando os subvetores recursivamente
+    quickSort(A, menor, pivo - 1);
+    quickSort(A, pivo, maior);
+  }
+}
+
+int main() {
+  int A[] = {13, 87, 33, 91, 43, 545, 7, 66, 20};
+  int tamanho = sizeof(A) / sizeof(A[0]);
+
+  quickSort(A, 0, tamanho - 1);
+
+  for (int i = 0; i < tamanho; i++) {
+    printf("%i\n", A[i]);
+  }
+
+  return 0;
+}
