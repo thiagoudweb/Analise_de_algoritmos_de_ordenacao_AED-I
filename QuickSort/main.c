@@ -77,7 +77,7 @@ void listaOrdenadaDecrescente(int *vetBubble, int tamVet)
     }
 }
 
-// FUNÇÃO PRINCIPAL: BUBBLE SORT //
+// FUNÇÃO PRINCIPAL: QUICK SORT //
 void troca(int *a, int *b, long long *totalSwap) {
     int t = *a;
     *a = *b;
